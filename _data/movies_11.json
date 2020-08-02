@@ -1,0 +1,53 @@
+[
+  {
+    "Position": "956",
+    "Const": "tt1139797",
+    "Created": "2013-12-21",
+    "Modified": "2013-12-21",
+    "Description": "",
+    "Title": "L�t den r�tte komma in",
+    "URL": "https://www.imdb.com/title/tt1139797/",
+    "Title Type": "movie",
+    "IMDb Rating": "7.9",
+    "Runtime (mins)": "114",
+    "Year": "2008",
+    "Genres": "Crime, Drama, Fantasy, Horror, Romance",
+    "Num Votes": "202165",
+    "Release Date": "2008-01-26",
+    "Directors": "Tomas Alfredson"
+  },
+  {
+    "Position": "957",
+    "Const": "tt1157605",
+    "Created": "2014-10-25",
+    "Modified": "2014-10-25",
+    "Description": "",
+    "Title": "Anvil: The Story of Anvil",
+    "URL": "https://www.imdb.com/title/tt1157605/",
+    "Title Type": "movie",
+    "IMDb Rating": "7.9",
+    "Runtime (mins)": "80",
+    "Year": "2008",
+    "Genres": "Documentary, Biography, Drama, Music",
+    "Num Votes": "15429",
+    "Release Date": "2008-01-18",
+    "Directors": "Sacha Gervasi"
+  },
+  {
+    "Position": "915",
+    "Const": "tt0128445",
+    "Created": "2013-12-15",
+    "Modified": "2013-12-15",
+    "Description": "",
+    "Title": "Rushmore",
+    "URL": "https://www.imdb.com/title/tt0128445/",
+    "Title Type": "movie",
+    "IMDb Rating": "7.7",
+    "Runtime (mins)": "93",
+    "Year": "1998",
+    "Genres": "Comedy, Drama, Romance",
+    "Num Votes": "165317",
+    "Release Date": "1998-09-17",
+    "Directors": "Wes Anderson"
+  }
+]
