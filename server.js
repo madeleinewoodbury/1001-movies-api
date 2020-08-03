@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
@@ -17,6 +18,9 @@ const app = express();
 
 // Init Middleware
 app.use(express.json());
+
+// Enable CORS
+app.use(cors());
 
 // Mount routers
 app.use('/api/v1/auth', auth);

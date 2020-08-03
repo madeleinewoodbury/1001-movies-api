@@ -16,9 +16,26 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  watched: {
-    type: [String],
-  },
+  watched: [
+    {
+      title: {
+        type: String,
+        required: true,
+      },
+      poster: {
+        type: String,
+        required: true,
+      },
+      year: {
+        type: String,
+        required: true,
+      },
+      movieId: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   role: {
     type: String,
     default: 'user',
