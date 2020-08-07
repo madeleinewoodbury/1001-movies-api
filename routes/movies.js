@@ -31,7 +31,20 @@ router.post(
         title: response.data.Title,
         poster: response.data.Poster,
         year: response.data.Year,
+        runtime: response.data.Runtime,
+        genre: response.data.Genre,
+        director: response.data.Director,
+        country: response.data.Country,
         movieId: response.data.imdbID,
+        rated: response.data.Rated,
+        released: response.data.Released,
+        writer: response.data.Writer,
+        actors: response.data.Actors,
+        plot: response.data.Plot,
+        language: response.data.Language,
+        ratings: response.data.Ratings,
+        type: response.data.Type,
+        production: response.data.Production,
       };
 
       await Movie.create(newFilm);
@@ -62,19 +75,18 @@ router.get('/', async (req, res) => {
   } catch (err) {}
 });
 
-// @desc    Get movie from OMDB API by id
+// @desc    Get movie from database
 // @route   GET /api/v1/movies/:id
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    const response = await axios.get('http://www.omdbapi.com', {
-      params: {
-        apikey: process.env.API_KEY,
-        i: req.params.id,
-      },
-    });
+    const movie = await Movie.findById(req.params.id);
 
-    res.status(201).json({ success: true, movie: response.data });
+    if (!movie) {
+      return res.status(400).json({ success: false, msg: 'Movie not found' });
+    }
+
+    res.status(201).json({ success: true, movie });
   } catch (err) {
     res.status(500).send('Server Error');
   }
@@ -115,11 +127,10 @@ router.get('/search/:search', async (req, res) => {
 // @desc    Add movie to watched
 // @route   PUT /api/v1/movies/users/:movieId
 // @access  Private
-router.put('/users/:movieId', auth, async (req, res) => {
+router.get('/users/:movieId', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    const movie = await Movie.findById(req.params.movieId);
-
+    const movie = await Movie.findOne({ movieId: req.params.movieId });
     if (!movie) {
       return res.status(400).json({ success: false, msg: 'Movie not found' });
     }

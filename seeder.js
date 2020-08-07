@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Read JSON files
 const movies = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/movies_11.json`, 'utf-8')
+  fs.readFileSync(`${__dirname}/_data/movies_901-1001.json`, 'utf-8')
 );
 
 // Import into DB
@@ -33,11 +33,25 @@ const importData = async () => {
           i: movie.Const,
         },
       });
+
       const newFilm = {
         title: response.data.Title,
         poster: response.data.Poster,
         year: response.data.Year,
+        runtime: response.data.Runtime,
+        genre: response.data.Genre,
+        director: response.data.Director,
+        country: response.data.Country,
         movieId: response.data.imdbID,
+        rated: response.data.Rated,
+        released: response.data.Released,
+        writer: response.data.Writer,
+        actors: response.data.Actors,
+        plot: response.data.Plot,
+        language: response.data.Language,
+        ratings: response.data.Ratings,
+        type: response.data.Type,
+        production: response.data.Production,
       };
       await Movie.create(newFilm);
     } catch (err) {
