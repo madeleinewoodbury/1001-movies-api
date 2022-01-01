@@ -20,7 +20,9 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+app.use(
+  cors({ origin: ['https://1001-movies.netlify.app', 'http://localhost:3000'] })
+);
 
 // Mount routers
 app.use('/api/v1/auth', auth);

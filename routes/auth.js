@@ -80,7 +80,8 @@ router.post('/forgotpassword', async (req, res) => {
     const resetToken = user.getResetPasswordToken();
     await user.save();
 
-    const resetURL = `http://localhost:3000/resetpassword/${resetToken}`;
+    // const resetURL = `http://localhost:3000/resetpassword/${resetToken}`;
+    const resetURL = `https://1001-movies.netlify.app/resetpassword/${resetToken}`;
 
     const msg = `
     <p>Hello ${user.name.split(' ')[0]}</p>
