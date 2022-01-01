@@ -19,6 +19,16 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const user = await User.findById(req.user.id);
+    if (user.role != 'admin') {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    const movie = await Movie.findOne({ movieId: req.body.movieId });
+    if (movie) {
+      return res.status(400).json({ msg: 'Movie already exist in database' });
+    }
+
     try {
       const response = await axios.get('http://www.omdbapi.com', {
         params: {
@@ -26,6 +36,10 @@ router.post(
           i: req.body.movieId,
         },
       });
+
+      if (typeof response.data == 'string' || response.data.Error) {
+        return res.status(404).json({ msg: 'Incorrect IMDb ID' });
+      }
 
       const newFilm = {
         title: response.data.Title,
@@ -44,13 +58,14 @@ router.post(
         language: response.data.Language,
         ratings: response.data.Ratings,
         type: response.data.Type,
-        production: response.data.Production,
+        production: response.data.Production ? response.data.Production : 'N/A',
       };
 
       await Movie.create(newFilm);
 
       res.status(201).json({ success: true, movie: newFilm });
     } catch (err) {
+      console.log(err);
       res.status(500).send('Server Error');
     }
   }
